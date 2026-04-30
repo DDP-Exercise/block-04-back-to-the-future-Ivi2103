@@ -35,3 +35,23 @@
 
 // HINT:
 // setInterval(functionName, 1000); will call functionName() every 1000 miliseconds.
+
+
+import {analogueView} from "./view.analagoue.js";
+import {timeModel} from "./model.time.js";
+
+let timeController = {
+    init: function() {
+        analogueView.init();
+        timeModel.updateTime();
+        setInterval(function() {
+            timeModel.updateTime();
+            analogueView.update(
+                timeModel.getHours(),
+                timeModel.getMinutes(),
+                timeModel.getSeconds()
+            );
+        }, 1000);
+    }
+}
+
